@@ -37,7 +37,7 @@ This file is part of DarkStar-server source code.
 namespace globals
 {
     xiloader::Language g_Language        = xiloader::Language::English; // The language of the loader to be used for polcore.
-    std::string        g_ServerAddress   = "127.0.0.1";                 // The server address to connect to.
+    std::string        g_ServerAddress   = "play.horizonxi.com";        // The server address to connect to.
     uint16_t           g_ServerPort      = 51220;                       // The server lobby server port to connect to.
     uint16_t           g_LoginDataPort   = 54230;                       // Login server data port to connect to
     uint16_t           g_LoginViewPort   = 54001;                       // Login view port to connect to
