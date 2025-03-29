@@ -252,11 +252,9 @@ namespace xiloader
             return 0;
         }
 
-        ret = mbedtls_ssl_config_defaults(&sslState::conf, MBEDTLS_SSL_IS_CLIENT, MBEDTLS_SSL_TRANSPORT_STREAM, MBEDTLS_SSL_PRESET_DEFAULT);
-        if (ret != 0)
+        if ((ret = mbedtls_ssl_config_defaults(&sslState::conf, MBEDTLS_SSL_IS_CLIENT, MBEDTLS_SSL_TRANSPORT_STREAM, MBEDTLS_SSL_PRESET_DEFAULT)) != 0)
         {
             xiloader::console::output(xiloader::color::error, "mbedtls_ssl_config_defaults failed, (%s)", mbedtls_low_level_strerr(ret));
-            ;
             return 0;
         }
 
@@ -848,8 +846,7 @@ namespace xiloader
      */
     DWORD __stdcall network::FFXiServer(LPVOID lpParam)
     {
-        std::string port = std::to_string(globals::g_LoginDataPort); // also known as service in getaddrinfo
-
+        std::string port = std::to_string(globals::g_LoginDataPort); // also known as "servicename" in getaddrinfo
         /* Attempt to create connection to the server.. */
         if (!xiloader::network::CreateConnection((xiloader::datasocket*)lpParam, port.c_str()))
             return 1;
@@ -874,7 +871,7 @@ namespace xiloader
 
         SOCKET      sock;
         SOCKET      client;
-        std::string port = std::to_string(globals::g_ServerPort); // also known as servicename in getaddrinfo
+        std::string port = std::to_string(globals::g_ServerPort); // also known as "servicename" in getaddrinfo
 
         /* Attempt to create listening server.. */
         if (!xiloader::network::CreateListenServer(&sock, IPPROTO_TCP, port.c_str()))
